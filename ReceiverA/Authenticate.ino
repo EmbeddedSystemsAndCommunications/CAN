@@ -14,5 +14,12 @@ void computeHMAC(uint8_t* message, uint8_t* output) {
   Serial.print(" MAC : ");
   for (size_t index = 0; index < HMAC_SHA1_HASH_SIZE; index++)
     Serial.print(output[index], HEX);
-  Serial.println();
+}
+
+bool equal(uint8_t* HMAC1, uint8_t* HMAC2) {
+  for (size_t index = 0; index < HMAC_SHA1_HASH_SIZE; index++) {
+    if (HMAC1[index] != HMAC2[index])
+      return false;
+  }
+  return true;
 }

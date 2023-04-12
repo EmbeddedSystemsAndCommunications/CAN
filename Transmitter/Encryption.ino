@@ -32,5 +32,4 @@ void encryptData(uint8_t* plainText, uint8_t* cipherText) {
   AES_ECB_encrypt(&context, cipherText);
   for (size_t index = 0; index < AES_BLOCKLEN; index++)
     Serial.print(cipherText[index], HEX);
-  Serial.println();
 }
