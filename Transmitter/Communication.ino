@@ -3,7 +3,7 @@
 
 #define CAN_MESSAGE_LENGTH 8
 #define MCP2515_CS_PIN 53
-#define DELAY 500
+#define DELAY 100
 struct can_frame CANMessage;
 MCP2515 mcp2515(MCP2515_CS_PIN);
 
