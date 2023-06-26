@@ -21,7 +21,7 @@ uint8_t removePadding(uint8_t* paddedDecodedText) {
   return paddedDecodedText[0];
 }
 
-void decryptData(uint8_t* cipherText, uint8_t* decodedText) {
+uint8_t decryptData(uint8_t* cipherText) {
   // Do the PRESENT Decryption
   uint8_t AEScipherText[AES_BLOCKLEN];  
   present_decrypt(cipherText, presentKey1, AEScipherText);
@@ -33,6 +33,7 @@ void decryptData(uint8_t* cipherText, uint8_t* decodedText) {
   AES_ECB_decrypt(&context, paddedDecodedText);
 
   // Remove padding
-  *decodedText = removePadding(paddedDecodedText);
-  Serial.println(" Decoded data : " + String(*decodedText));
+  uint8_t decodedText = decodedText = removePadding(paddedDecodedText);
+  Serial.println(" Decoded data : " + String(decodedText));
+  return decodedText;
 }

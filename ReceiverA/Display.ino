@@ -3,8 +3,18 @@
 
 // Global variables for display
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+uint8_t error, address;
 
 void initDisplay() {
+  Wire.begin();
+  for(address = 0; address < 127; address++) {
+    Wire.beginTransmission(address);
+    error = Wire.endTransmission();
+    if(error == 0) {
+      Serial.println(address, HEX);
+      break;
+    }
+  }
   lcd.init();
   lcd.clear();
   lcd.backlight();
@@ -15,6 +25,7 @@ void initDisplay() {
 }
 
 void displayInLED(uint8_t data) {
+  Serial.println(data);
   lcd.setCursor(1, 0);
   lcd.print("CAN_Reciever ...");
   lcd.setCursor(2, 1);

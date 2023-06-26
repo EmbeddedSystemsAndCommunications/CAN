@@ -21,10 +21,11 @@ void setup() {
 void loop() {
   receiveData(cipherText, receivedHMAC);
   computeHMAC(cipherText, computedHMAC);
-  if (equal(receivedHMAC, computedHMAC))
-    decryptData(cipherText, &decodedText);
+  if (equal(receivedHMAC, computedHMAC)) {
+    decodedText = decryptData(cipherText);
+    // displayInLED(decodedText);
+  }
   else
     Serial.println(" Data not received completely");
-  // displayInLED(decodedText);
   delay(100);
 }
